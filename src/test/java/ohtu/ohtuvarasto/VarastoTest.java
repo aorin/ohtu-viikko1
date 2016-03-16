@@ -69,10 +69,38 @@ public class VarastoTest {
     public void konstr() {
         varasto = new Varasto(-1);
         varasto = new Varasto(0);
-        varasto = new Varasto(1,1);
-        varasto = new Varasto(1,2);
-        varasto = new Varasto(-1,2);
-        varasto = new Varasto(-1,-1);
+        varasto = new Varasto(1, 1);
+        varasto = new Varasto(1, 2);
+        varasto = new Varasto(-1, 2);
+        varasto = new Varasto(-1, -1);
         varasto.toString();
+    }
+
+    @Test
+    public void lisaysEiLisaaNegatiivistaMaaraa() {
+        varasto.lisaaVarastoon(-1);
+
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisaysLisaaVainNiinPaljonKuinMahtuu() {
+        varasto.lisaaVarastoon(11);
+
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void eiVoiOttaaNegatiivistaMaaraa() {
+        varasto.lisaaVarastoon(2);
+        varasto.otaVarastosta(-1);
+        assertEquals(2, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void voiOttaaEnintaanSaldonVerran() {
+        varasto.lisaaVarastoon(2);
+        double otettu = varasto.otaVarastosta(3);
+        assertEquals(2, otettu, vertailuTarkkuus);
     }
 }
