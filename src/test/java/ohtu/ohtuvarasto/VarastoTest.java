@@ -101,6 +101,6 @@ public class VarastoTest {
     public void voiOttaaEnintaanSaldonVerran() {
         varasto.lisaaVarastoon(2);
         double otettu = varasto.otaVarastosta(3);
-        assertEquals(1, otettu, vertailuTarkkuus);
+        assertEquals(2, otettu, vertailuTarkkuus);
     }
 }
